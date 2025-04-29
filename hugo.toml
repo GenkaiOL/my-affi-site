@@ -1,8 +1,9 @@
 baseURL = "https://my-affi-site.pages.dev/"     # ← ご自身の Preview URL or 独自ドメイン
 languageCode = "ja"                             # ← 日本語サイトなら "ja"
-title = "My Affiliate Blog"                     # ← サイト名を自由に変更
+title = "Genkaiブログ"                     # ← サイト名を自由に変更
 theme = "ananke"                                # ← 変更不要
 
 # --- 以下は任意設定 ---
 [params]
-  description = "副業アフィリエイトを始めるための情報を発信するサイト"  # サイト説明
+  description = "最新のITトレンド・ガジェットレビューから美容・健康アイテムの解説とお得な比較情報をお届けするブログ"
+

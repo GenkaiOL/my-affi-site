@@ -5,10 +5,13 @@ theme         = "PaperMod"
 
 [params]
   description       = "最新のITトレンド・ガジェットレビューから美容・健康アイテムの解説とお得な比較情報をお届けするブログ"
-  defaultTheme      = "auto"          # OSのダーク/ライトに追従
-  ShowReadingTime   = true            # 読了時間を表示
-  ShowShareButtons  = true            # SNS共有ボタン
+  defaultTheme      = "auto"
+  ShowReadingTime   = true
+  ShowShareButtons  = true
   customCSS         = ["css/custom.css"]
+
+  # GA を使わない場合は空文字で OK
+  googleAnalytics   = ""
 
 # ------- ↑ params テーブルここまで ---------
 

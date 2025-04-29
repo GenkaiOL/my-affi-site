@@ -1,18 +1,18 @@
-baseURL = "https://my-affi-site.pages.dev/"     # ← ご自身の Preview URL or 独自ドメイン
-languageCode = "ja"                             # ← 日本語サイトなら "ja"
-title = "Genkaiブログ"                     # ← サイト名を自由に変更
-theme = "PaperMod"                              # ← 変更不要
+baseURL       = "https://my-affi-site.pages.dev/"
+languageCode  = "ja"
+title         = "Genkaiブログ"
+theme         = "PaperMod"
 
-# --- 以下は任意設定 ---
 [params]
-  description = "最新のITトレンド・ガジェットレビューから美容・健康アイテムの解説とお得な比較情報をお届けするブログ"
-  defaultTheme     = "auto"        # OSのダークモード/ライトモードに自動追従
-  ShowReadingTime  = true          # 記事の読了時間を表示
-  ShowShareButtons = true          # SNS共有ボタンを表示
+  description       = "最新のITトレンド・ガジェットレビューから美容・健康アイテムの解説とお得な比較情報をお届けするブログ"
+  defaultTheme      = "auto"          # OSのダーク/ライトに追従
+  ShowReadingTime   = true            # 読了時間を表示
+  ShowShareButtons  = true            # SNS共有ボタン
+  customCSS         = ["css/custom.css"]
 
-  customCSS = ["css/custom.css"]
+# ------- ↑ params テーブルここまで ---------
 
-  [[menu.main]]
+[[menu.main]]      # ← params の外に置くのがポイント
   name   = "ホーム"
   url    = "/"
   weight = 1

@@ -1,0 +1,16 @@
+/* Google Fonts 読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+/* サイト全体に適用 */
+html, body {
+  font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+}
+
+/* 見出しは太字＆少し余白調整 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}

@@ -113,8 +113,9 @@ git push
 
 ---
 ## 8. 一歩先へ行きたいあなたへ
-<a href="https://px.a8.net/svt/ejp?a8mat=453LNH+50ED2Q+50+2HHVNM" rel="nofollow">お名前.com</a>
-<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=453LNH+50ED2Q+50+2HHVNM" alt="">
+<a href="https://px.a8.net/svt/ejp?a8mat=453LNH+50ED2Q+50+2HWVS1" rel="nofollow">
+<img border="0" width="300" height="250" alt="" src="https://www27.a8.net/svt/bgt?aid=250430813303&wid=001&eno=01&mid=s00000000018015102000&mc=1"></a>
+<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=453LNH+50ED2Q+50+2HWVS1" alt="">
 
 これで“ゼロ円”インフラのブログ構築は完了！  
 次は記事を量産して収益化を目指そう📈

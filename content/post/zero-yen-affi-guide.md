@@ -122,10 +122,7 @@ git push
 
 下のボタンをクリックするだけで、特典が自動的に適用されます。
 
-{{< affiliate
-  url="https://px.a8.net/svt/ejp?a8mat=453LNH+50ED2Q+50+2HHVNM"
-  text="お名前.comで独自ドメインを無料登録する"
->}}
+{{< affiliate slug="onamae" text="お名前.comで独自ドメインを無料登録する" >}}
 
 
 これで“ゼロ円”インフラのブログ構築は完了！  

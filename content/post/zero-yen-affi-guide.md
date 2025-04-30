@@ -112,6 +112,9 @@ git push
 | テーマエラー  | Hugo Extended 版をインストール                          |
 
 ---
+## 8. 一歩先へ行きたいあなたへ
+<a href="https://px.a8.net/svt/ejp?a8mat=453LNH+50ED2Q+50+2HHVNM" rel="nofollow">お名前.com</a>
+<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=453LNH+50ED2Q+50+2HHVNM" alt="">
 
 これで“ゼロ円”インフラのブログ構築は完了！  
 次は記事を量産して収益化を目指そう📈

@@ -1,93 +1,117 @@
+```markdown
 ---
-title: "Windowsでゼロ円公開！中学生でもできるアフィリエイトブログ構築マニュアル"
+title: "Windowsでゼロ円公開！初心者でもできる副業ブログ構築マニュアル【無料 ブログ 作り方】"
 date: 2025-04-29T15:00:00+09:00
 draft: false
-tags: ["Hugo", "Cloudflare Pages", "アフィリエイト", "初心者向け"]
+tags: ["無料 ブログ 作り方", "Hugo", "Cloudflare Pages", "副業", "初心者向け"]
+description: "Git・Hugo・Cloudflare Pages を組み合わせ、完全無料で副業ブログを公開する手順を初心者向けに解説。必要ツールの導入から独自ドメイン設定、トラブル対処まで網羅！"
+images: ["/images/ogp-free-blog-guide.png"]
 ---
 
-> **ゴール**：パソコン初心者でも30分で _Hugo + GitHub + Cloudflare Pages_ の無料インフラを使い、記事を書いたら URL が公開されるブログを完成させる。
+> **ゴール**  
+> パソコン初心者でも 30 分で **Hugo × GitHub × Cloudflare Pages** の **ゼロ円インフラ**を構築し、記事を書いたら即公開できる副業ブログを完成させる！
 
 ---
 
-## 0. 全体の流れ（鳥瞰図）
-1. 必要ツールをインストール（Git / Hugo / VSCode）  
+## 0. 全体の流れ
+
+![Hugo→GitHub→Cloudflare Pages 連携図](https://images.unsplash.com/photo-1537432376769-00a35b6e7c9e?fit=crop&w=1280&h=720)
+
+1. 必要ツールをインストール  
 2. Hugo でサイト骨格を作成  
 3. GitHub にアップロード  
-4. Cloudflare Pages と連携し公開  
+4. Cloudflare Pages と連携して公開  
 5. 記事を書く → `git push` で自動公開  
-6. カスタムドメイン & アクセス解析
+6. 独自ドメイン & アクセス解析
 
 ---
 
-## 1. 必要ツールを入れる（15分）
-| ツール | 役割 | インストール（PowerShell 管理者） |
-|--------|------|----------------------------------|
-| **Git** | ソース管理 | `winget install --id Git.Git -e` |
-| **Chocolatey** | パッケージ管理 | <https://chocolatey.org/install> |
-| **Hugo Extended** | 静的サイト生成 | `choco install hugo-extended -y` |
-| **VSCode** | エディタ | `winget install --id Microsoft.VisualStudioCode` |
+## 1. 必要ツールを入れる（15 分）
+
+| ツール | 役割 | インストール (PowerShell 管理者) |
+| ------ | ---- | -------------------------------- |
+| Git | バージョン管理 | `winget install --id Git.Git -e` |
+| Chocolatey | パッケージ管理 | <https://chocolatey.org/install> |
+| Hugo Extended | 静的サイト生成 | `choco install hugo-extended -y` |
+| Visual Studio Code | エディタ | `winget install --id Microsoft.VisualStudioCode` |
 
 ```powershell
 git --version
-hugo version
+hugo version   # “Extended” が付いていればOK
 code --version
 ```
 
 ---
 
-## 2. Hugo サイトを作る（10分）
+## 2. Hugo サイトを作る（10 分）
+
 ```powershell
-mkdir my-affi-site
-cd my-affi-site
+mkdir my-blog
+cd my-blog
 hugo new site . --format toml
 git init
-git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke
-Add-Content hugo.toml 'theme = "ananke"'
-hugo server -D   # → http://localhost:1313
+git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+echo 'theme = "PaperMod"' >> config.toml
+hugo server -D   # http://localhost:1313 でプレビュー
 ```
 
 ---
 
-## 3. GitHub にアップロード（5分）
+## 3. GitHub にアップロード（5 分）
+
 ```powershell
-git remote add origin https://github.com/<あなたのID>/my-affi-site.git
+git remote add origin https://github.com/<YOUR_ID>/my-blog.git
 git add .
 git commit -m "First commit"
 git branch -M main
-git push -u origin main   # パスワード欄に PAT を貼り付け
+git push -u origin main   # PAT を入力
 ```
 
 ---
 
-## 4. Cloudflare Pages と接続（10分）
-1. Cloudflare ダッシュボード → **Pages → Create a project**  
-2. GitHub と連携しリポジトリを選択  
-3. **Build settings**  
-   - Framework: Hugo  
+## 4. Cloudflare Pages と接続（10 分）
+
+1. Cloudflare Dashboard → **Pages → Create a project**  
+2. GitHub 認証 → リポジトリ選択  
+3. Build settings  
+   - Framework: **Hugo**  
    - Build: `hugo --gc --minify`  
    - Output: `public`  
-   - Env: `HUGO_VERSION=0.128.0`  
-4. **Save and Deploy** → `https://my-affi-site.pages.dev`
+4. Environment variables  
+   | Name | Value |
+   | ---- | ----- |
+   | `HUGO_VERSION` | `0.115.4` |
+   | `HUGO_ENV` | `production` |
+5. **Save and Deploy** → `https://<project>.pages.dev`
 
 ---
 
 ## 5. 記事を追加して公開
-### 5-1. ショートコード
+
+### ショートコード
+
 `layouts/shortcodes/affiliate.html`
+
 ```html
-<a href="{{ .Get "url" }}" target="_blank" rel="noopener">
-  <button style="background:#ff8000;color:#fff;padding:8px 16px;border:none;border-radius:4px;">
+<a href="/go/{{ .Get "slug" }}" target="_blank" rel="noopener noreferrer">
+  <button style="background:#ff8000;color:#fff;padding:10px 20px;border:none;border-radius:5px;font-size:1rem;cursor:pointer;">
     {{ .Get "text" }}
   </button>
 </a>
 ```
 
-### 5-2. 新規記事
+### 新規記事
+
 ```powershell
-hugo new post/first-affiliate.md
+hugo new posts/first-affiliate.md
 ```
 
-### 5-3. 反映
+記事例:
+
+```markdown
+{{< affiliate slug="onamae" text="お名前.comで独自ドメインを無料登録する" >}}
+```
+
 ```powershell
 git add .
 git commit -m "Add first article"
@@ -96,34 +120,36 @@ git push
 
 ---
 
-## 6. カスタムドメイン & アクセス解析
-| やりたいこと      | 操作                                       |
-|------------------|-------------------------------------------|
-| 独自ドメイン     | Pages → **Custom domains → Add**          |
-| Web Analytics    | Pages → **Metrics → Enable**              |
+## 6. 独自ドメイン & アクセス解析
+
+| やりたいこと | 操作 |
+| ------------ | ---- |
+| 独自ドメイン | Pages → **Custom domains → Add** |
+| 解析 (GA4)  | `googleAnalytics = "G-XXXX"` を config.toml に追記 |
 
 ---
 
 ## 7. よくあるトラブル
-| 症状          | 対策                                                   |
-|---------------|--------------------------------------------------------|
-| 404           | `baseURL` を正しい URL にして再プッシュ                |
-| ボタン非表示  | `affiliate.html` が無い → layouts/shortcodes に置く    |
-| テーマエラー  | Hugo Extended 版をインストール                          |
+
+| 症状 | 対策 |
+| ---- | ---- |
+| 404 | `baseURL` を実URLに合わせ再デプロイ |
+| テーマ反映されず | サブモジュールをコミット / `git submodule update --init --recursive` |
+| Hugo Extended エラー | `HUGO_VERSION` を Extended 対応版へ |
 
 ---
-## 8. 独自ドメインを取得してブログを本格始動しよう！
 
-以下の特典を活用して、サイト運営をお得にスタートしましょう。
+## 8. 独自ドメインでブログを本格始動！
 
-1. **初年度ドメイン登録料が無料**  
-2. **豊富なドメイン種類**からお好みのものを選択可能  
-3. **SSL証明書設定**もワンクリックで簡単完了  
-
-下のボタンをクリックするだけで、特典が自動的に適用されます。
+- **初年度登録料 0 円** キャンペーン  
+- 豊富な TLD (.com / .net / .jp)  
+- SSL 設定もワンクリック  
 
 {{< affiliate slug="onamae" text="お名前.comで独自ドメインを無料登録する" >}}
 
+---
 
-これで“ゼロ円”インフラのブログ構築は完了！  
-次は記事を量産して収益化を目指そう📈
+## 今すぐブログを始めよう！
+
+今日からあなたも副業ブロガー。**思い立ったが吉日、今すぐブログを始めよう！**
+```

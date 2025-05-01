@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="hero">
+  <img src="/images/hero.jpg" alt="副業ブログ構築マニュアル" style="width:100%;height:auto;">
+  <div class="hero-text">
+    <h1>{{ .Site.Title }}</h1>
+    <p>{{ .Site.Params.description }}</p>
+  </div>
+</section>
+{{ .Content }}
+{{ end }}

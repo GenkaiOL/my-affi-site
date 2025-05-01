@@ -19,3 +19,8 @@ theme         = "PaperMod"
   name   = "ホーム"
   url    = "/"
   weight = 1
+
+
+[params]
+  customCSS = ["css/custom.css"]
+  googleFonts = ["Noto+Sans+JP:400,700"]  # 日本語可視性に優れたフォント

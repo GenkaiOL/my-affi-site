@@ -9,18 +9,10 @@ theme         = "PaperMod"
   ShowReadingTime   = true
   ShowShareButtons  = true
   customCSS         = ["css/custom.css"]
+  googleAnalytics   = ""                  # GAを使わない場合は空文字でOK
+  googleFonts       = ["Noto+Sans+JP:400,700"]
 
-  # GA を使わない場合は空文字で OK
-  googleAnalytics   = ""
-
-# ------- ↑ params テーブルここまで ---------
-
-[[menu.main]]      # ← params の外に置くのがポイント
+[[menu.main]]
   name   = "ホーム"
   url    = "/"
   weight = 1
-
-
-[params]
-  customCSS = ["css/custom.css"]
-  googleFonts = ["Noto+Sans+JP:400,700"]  # 日本語可視性に優れたフォント

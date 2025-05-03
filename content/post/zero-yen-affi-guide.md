@@ -110,7 +110,7 @@ tags: ["独自ドメイン", "副業", "初心者"]
 ---
 
 {{< affiliate slug="onamae" text="お名前.comで独自ドメインを無料登録する" >}}
-```
+
 
 ```powershell
 git add .

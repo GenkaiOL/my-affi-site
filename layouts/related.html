@@ -1,0 +1,9 @@
+<div class="related-posts">
+    <h3>関連記事</h3>
+    <ul>
+    {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+  </div>
+  

@@ -1,22 +1,20 @@
 ---
-title: "【2025年最新版】Windowsでゼロ円公開！初心者が30分で副業ブログを作る方法｜無料ブログの作り方"
+title: "..."
 date: 2025-04-29T15:00:00+09:00
 draft: false
 tags:
-
-* "無料 ブログ 作り方"
-* "副業ブログ"
-* "Hugo"
-* "Cloudflare Pages"
-* "初心者向け"
-  description: >
+  - "無料 ブログ 作り方"
+  - "副業ブログ"
+  - "Hugo"
+  - "Cloudflare Pages"
+  - "初心者向け"
+description: >
   Windowsユーザーでも30分で出来る無料ブログの作り方を徹底解説。
   Git・Hugo・GitHub・Cloudflare Pagesを組み合わせたゼロ円インフラで、
   副業ブログを最速公開！独自ドメイン取得・SEO設定・トラブル解決まで完全網羅。
-  images:
-* "/images/ogp-free-blog-guide.png"
-  toc: true
-
+images:
+  - "/images/ogp-free-blog-guide.png"
+toc: true
 ---
 
 > ## 🎯 本記事のゴール

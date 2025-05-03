@@ -17,104 +17,119 @@ images:
 toc: true
 ---
 
-
-> ## 🎯 ゴール  
-> **パソコン初心者でも 30 分**で **Hugo × GitHub × Cloudflare Pages** を活用した **ゼロ円副業ブログ** を構築し、投稿した記事を **即公開** できるようになる！
-
----
-
-## 0. 全体フロー
-
-![Hugo→GitHub→Cloudflare Pages 連携図](/images/hugo-github-cfpages-flow.png)
-
-1. ツールをインストール  
-2. Hugo サイト生成  
-3. GitHub へプッシュ  
-4. Cloudflare Pages で公開  
-5. 記事を書く → `git push` で自動公開  
-6. 独自ドメイン & アクセス解析
+> ## 🎯 本記事のゴール  
+> 1. **パソコン初心者でも30分**で「Hugo × GitHub × Cloudflare Pages」を使った **ランニングコスト0円**ブログを構築  
+> 2. 記事を書いたら **即自動公開** される仕組みを体験  
+> 3. **独自ドメイン取得** → **SEO対策** → **アクセス解析**まで完全マスター  
 
 ---
 
-## 1. 必要ツールをインストール（15 分）
+## 🚀 0. 全体フロー
 
-| ツール | 役割 | インストール (PowerShell・管理者) |
-| ------ | ---- | --------------------------------- |
-| Git | バージョン管理 | `winget install --id Git.Git -e` |
-| Chocolatey | パッケージ管理 | <https://chocolatey.org/install> |
-| Hugo Extended | 静的サイト生成 | `choco install hugo-extended -y` |
-| VS Code | エディタ | `winget install --id Microsoft.VisualStudioCode` |
+![Hugo→GitHub→Cloudflare Pages連携図](/images/hugo-github-cfpages-flow.png)
+
+1. 必要ツールのインストール  
+2. Hugoでサイト骨格を生成  
+3. GitHubにPush  
+4. Cloudflare Pagesで自動デプロイ  
+5. 記事作成 → `git push` で即公開  
+6. 独自ドメイン & アクセス解析設定  
+
+---
+
+## 🛠 1. 必要ツールを一気にインストール（約15分）
+
+| ツール               | 役割                 | インストールコマンド（管理者PowerShell）         |
+| -------------------- | -------------------- | ----------------------------------------------- |
+| **Git**              | ソース管理           | `winget install --id Git.Git -e`                |
+| **Chocolatey**       | パッケージ管理       | [chocolatey.org/install](https://chocolatey.org/install) |
+| **Hugo Extended**    | 静的サイト生成       | `choco install hugo-extended -y`                |
+| **Visual Studio Code** | コードエディタ       | `winget install --id Microsoft.VisualStudioCode` |
 
 ```powershell
-git --version
-hugo version   # “extended” が表示されればOK
-code --version
-```
+git --version       # Gitインストール確認
+hugo version        # “extended” が付いていればOK
+code --version      # VSCode起動確認
+💡 Tip: Chocolateyでまとめて入れると、依存ライブラリも自動管理！
 
----
-
-## 2. Hugo サイトを10分で構築
-
-```powershell
-mkdir my-blog && cd $_
+📦 2. Hugoサイトをサクっと10分で作成
+powershell
+コピーする
+編集する
+# プロジェクト新規作成〜ローカルプレビュー
+mkdir my-blog && cd my-blog
 hugo new site . --format toml
 git init
 git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 echo 'theme = "PaperMod"' >> hugo.toml
-hugo server -D   # → http://localhost:1313
-```
+hugo server -D   # ⇒ http://localhost:1313
+所要時間: 約5分
 
----
+ポイント: PaperModは日本語フォント対応・モバイル最適化済み
 
-## 3. GitHub へプッシュ（5 分）
-
-```powershell
+📤 3. GitHubへ一発Push（約5分）
+powershell
+コピーする
+編集する
 git remote add origin https://github.com/<YOUR_ID>/my-blog.git
 git add .
 git commit -m "feat: initial site"
 git branch -M main
-git push -u origin main   # PAT を入力
-```
+git push -u origin main   # PATを入力
+🔐 セキュリティTip: GitHubトークンは[Settings→Developer settings→Personal access tokens]で生成！
 
----
+☁️ 4. Cloudflare Pagesで無料公開（約10分）
+Cloudflareダッシュボード→Pages→Create a project
 
-## 4. Cloudflare Pages で無料公開（10 分）
+GitHubと連携しリポジトリを選択
 
-| 設定項目 | 値 |
-| -------- | -- |
-| Framework | Hugo |
-| Build command | `hugo --gc --minify` |
-| Output dir | `public` |
-| `HUGO_VERSION` | `0.147.0` |
-| `HUGO_ENV` | `production` |
+Build settings を以下に設定
 
-＞ **Save and Deploy** → `https://<project>.pages.dev` が数十秒で完成🎉
+Framework: Hugo
 
----
+Build command: hugo --gc --minify
 
-## 5. 記事を書く → `git push` で公開
+Output directory: public
 
-### アフィリエイトボタン（shortcode）
+Environment variables
 
-`layouts/shortcodes/affiliate.html`
+Name	Value
+HUGO_VERSION	0.147.0
+HUGO_ENV	production
 
-```html
+Save and Deploy → 数十秒で https://<project>.pages.dev に自動公開！ 🎉
+
+🚀 裏技: --minifyでCSS/JSを自動圧縮し、表示速度を高速化！
+
+✍️ 5. 記事を追加 → git push で自動公開
+5-1. アフィリエイトボタン (Shortcode)
+layouts/shortcodes/affiliate.html を作成：
+
+html
+コピーする
+編集する
 <a href="/go/{{ .Get "slug" }}" target="_blank" rel="noopener noreferrer">
-  <button style="background:#ff8000;color:#fff;padding:10px 20px;border:none;border-radius:5px;font-size:1rem;cursor:pointer;">
+  <button style="
+    background:#ff8000;
+    color:#fff;
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    font-size:1rem;
+    cursor:pointer;
+  ">
     {{ .Get "text" }}
   </button>
 </a>
-```
-
-### 新規記事
-
-まず、ターミナルで記事を作成します。
-
-```bash
+5-2. 新規記事テンプレート
+bash
+コピーする
+編集する
 hugo new posts/first-affiliate.md
-```
-
-```markdown
+記事例 — content/posts/first-affiliate.md
+markdown
+コピーする
+編集する
 ---
 title: "お名前.comで独自ドメインを0円で取得する方法"
 date: 2025-04-29T16:00:00+09:00
@@ -124,40 +139,42 @@ tags:
   - "初心者"
 ---
 
-{{< affiliate slug="onamae" text="お名前.comで独自ドメインを無料登録する" >}}
+Webサイト運営の第一歩は独自ドメイン取得！  
+以下のボタンから今すぐ無料登録しましょう👇
 
-
-```powershell
-git add .
-git commit -m "feat: add first article"
+{{< affiliate slug="onamae" text="お名前.comでドメインを無料登録" >}}
+powershell
+コピーする
+編集する
+git add content/posts/first-affiliate.md
+git commit -m "feat: add first-affiliate post"
 git push
-```
+✅ ポイント: 投稿直後にCloudflare Pagesが自動ビルドし、数秒で公開完了！
 
----
+🌐 6. 独自ドメイン & GA4設定
+やりたいこと	操作
+独自ドメイン	Pages → Custom domains → ドメイン名を入力 → DNSレコード自動化 ✔
+アクセス解析	googleAnalytics = "G-XXXXXXX" を hugo.toml に追記
 
-## 6. 独自ドメイン & GA4
+toml
+コピーする
+編集する
+[params]
+  googleAnalytics = "G-ABCDEFG1234"
+📈 SEOTip: OGP画像・メタタイトル・メタ説明を設定し、SNSや検索結果でクリック率UP！
 
-| やりたいこと | 操作 |
-| ------------ | ---- |
-| 独自ドメイン | Pages → *Custom domains* → Add |
-| アクセス解析 | `googleAnalytics = "G-XXXX"` を hugo.toml に追記 |
+⚠️ 7. よくあるトラブル＆解決策
+症状	対策
+404エラー	baseURLが間違い → hugo.toml の baseURL を実URLに修正 → 再Push
+テーマが反映されない	git submodule update --init --recursive → 再Deploy
+Hugo Extendedが必要	HUGO_VERSIONをExtended対応版に上げる（例: 0.147.0）
+記事にショートコードが出ない	layouts/shortcodes 配下に .html ファイルがあるか確認
 
----
+🎉 まとめ：今日から副業ブロガー
+手順30分でブログ構築
 
-## 7. よくあるエラー
+サーバーレス×無料で運営コスト0円
 
-| 症状 | 解決策 |
-| ---- | ------ |
-| 404 | `baseURL` 設定ミス → 修正 & 再デプロイ |
-| テーマ崩れ | `git submodule update --init --recursive` |
-| Extended 必要 | `HUGO_VERSION` を Extended 対応版に |
+git push だけで永久自動公開
 
----
-
-## まとめ：今日から副業ブロガー！
-
-- **30分**で無料ブログ完成  
-- **ランニングコスト0円**  
-- `git push` だけで永久無料ホスティング  
-
-**今すぐ行動して、ブログ収益化の第一歩を踏み出そう！ 🚀**
+さあ、今すぐ行動して、あなたも副業ブログで収益化への第一歩を踏み出しましょう！🚀
